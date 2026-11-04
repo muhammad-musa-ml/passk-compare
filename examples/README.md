@@ -1,5 +1,7 @@
 # Examples
 
+`tau2_baselines/` holds a run on real benchmark data, the June 2025 baselines of tau2-bench; see its [README](tau2_baselines/README.md). The files below are synthetic.
+
 `two_runs.jsonl` holds synthetic results for two runs, A and B, on 60 tasks with 8 trials each (960 records). `make_example.py` wrote it with seed 7. For each task it draws A's success probability from Beta(2, 2), sets B's to A's plus 0.03 (clipped to [0, 1]), and draws each trial's outcome from its run's probability, so B is slightly better by construction.
 
 `small_runs.jsonl` uses the same construction with 15 tasks, 3 trials per task and a lift of 0.05. The main README uses it for the inconclusive example.

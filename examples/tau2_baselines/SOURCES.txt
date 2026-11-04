@@ -1,0 +1,10 @@
+# tau2-bench commit 19f13ea3f5fba8b4c4d272d1353590f29dc53062 (https://github.com/sierra-research/tau2-bench, MIT licence)
+# sha256, size in bytes, path in that repository
+1e514292455cc2fbd3d06f8f42bbecf6ed21cbdda67491a3e454e5a033890839  10717909  data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json
+349bf757d452577a2d80903a24bbe6b42117258f0d8ac3d29f85e7b7584620b9  8936727  data/tau2/results/final/gpt-4.1-2025-04-14_airline_default_gpt-4.1-2025-04-14_4trials.json
+0de325278cc3a786a7e7a08be52911030234c5e0f271205c3588055a8a93b9ba  9942729  data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json
+c8f5b42ee6a901ebcfbdb6ef5f75509e9c702b734054c7ea97e19a8489afb2db  7730534  data/tau2/results/final/o4-mini-2025-04-16_airline_default_gpt-4.1-2025-04-14_4trials.json
+8ed278ae09736e28cda92fc353cf5755e754b6ca0030bf6071444ef966748a66  25297194  data/tau2/results/final/claude-3-7-sonnet-20250219_retail_default_gpt-4.1-2025-04-14_4trials.json
+512df82cc0e95e655029c35f1452b6933aa1d27f9b14be3553b4c785eb484e71  22401800  data/tau2/results/final/gpt-4.1-2025-04-14_retail_default_gpt-4.1-2025-04-14_4trials.json
+a9d8827875713ce65899cb149bb30e9c27e3a16459816376032b81c0a8084222  24082699  data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json
+e9287afa8b499b79cc7735a46d8a4fbee7c96497d67ef4f362b8e72cf9c62651  22439916  data/tau2/results/final/o4-mini-2025-04-16_retail_default_gpt-4.1-2025-04-14_4trials.json

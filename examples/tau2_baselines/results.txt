@@ -1,0 +1,351 @@
+$ passk summarize examples/tau2_baselines/airline.jsonl --run claude-3-7-sonnet-20250219
+run claude-3-7-sonnet-20250219 in examples/tau2_baselines/airline.jsonl: 50 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.5000  [0.3850, 0.6200]  0.5000  [0.3850, 0.6200]
+2  0.5900  [0.4700, 0.7100]  0.4100  [0.2833, 0.5367]
+3  0.6450  [0.5200, 0.7700]  0.3750  [0.2449, 0.5000]
+4  0.6800  [0.5600, 0.8000]  0.3600  [0.2200, 0.4800]
+
+$ passk summarize examples/tau2_baselines/airline.jsonl --run gpt-4.1-2025-04-14
+run gpt-4.1-2025-04-14 in examples/tau2_baselines/airline.jsonl: 50 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.5600  [0.4400, 0.6700]  0.5600  [0.4400, 0.6700]
+2  0.6633  [0.5500, 0.7667]  0.4567  [0.3267, 0.5900]
+3  0.7300  [0.6100, 0.8350]  0.4200  [0.2850, 0.5550]
+4  0.7800  [0.6600, 0.8800]  0.4000  [0.2600, 0.5400]
+
+$ passk summarize examples/tau2_baselines/airline.jsonl --run gpt-4.1-mini-2025-04-14
+run gpt-4.1-mini-2025-04-14 in examples/tau2_baselines/airline.jsonl: 50 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.5050  [0.3900, 0.6150]  0.5050  [0.3900, 0.6150]
+2  0.6167  [0.4900, 0.7367]  0.3933  [0.2799, 0.5033]
+3  0.6550  [0.5250, 0.7750]  0.3200  [0.2099, 0.4400]
+4  0.6800  [0.5400, 0.8000]  0.2600  [0.1400, 0.3800]
+
+$ passk summarize examples/tau2_baselines/airline.jsonl --run o4-mini-2025-04-16
+run o4-mini-2025-04-16 in examples/tau2_baselines/airline.jsonl: 50 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.5900  [0.4700, 0.7000]  0.5900  [0.4700, 0.7000]
+2  0.6967  [0.5733, 0.8100]  0.4833  [0.3567, 0.6033]
+3  0.7400  [0.6150, 0.8550]  0.4200  [0.2900, 0.5550]
+4  0.7600  [0.6400, 0.8800]  0.3800  [0.2400, 0.5200]
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-2025-04-14 --k 1
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-2025-04-14, k = 1: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5000  [0.3850, 0.6200]
+pass^k  B    0.5600  [0.4400, 0.6700]
+pass@k  A    0.5000  [0.3850, 0.6200]
+pass@k  B    0.5600  [0.4400, 0.6700]
+diff B - A in pass^k: 0.0600, 95% CI [-0.0500, 0.1700]
+one-sided 95% bounds: lower -0.0350, upper 0.1550; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.3383
+verdict: non_inferior
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-2025-04-14 --k 4
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-2025-04-14, k = 4: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.3600  [0.2200, 0.4800]
+pass^k  B    0.4000  [0.2600, 0.5400]
+pass@k  A    0.6800  [0.5600, 0.8000]
+pass@k  B    0.7800  [0.6600, 0.8800]
+diff B - A in pass^k: 0.0400, 95% CI [-0.1000, 0.1800]
+one-sided 95% bounds: lower -0.0800, upper 0.1600; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.7841
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-mini-2025-04-14 --k 1
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-mini-2025-04-14, k = 1: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5000  [0.3850, 0.6200]
+pass^k  B    0.5050  [0.3900, 0.6150]
+pass@k  A    0.5000  [0.3850, 0.6200]
+pass@k  B    0.5050  [0.3900, 0.6150]
+diff B - A in pass^k: 0.0050, 95% CI [-0.1000, 0.1100]
+one-sided 95% bounds: lower -0.0850, upper 0.0902; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 1.0000
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-mini-2025-04-14 --k 4
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-mini-2025-04-14, k = 4: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.3600  [0.2200, 0.4800]
+pass^k  B    0.2600  [0.1400, 0.3800]
+pass@k  A    0.6800  [0.5600, 0.8000]
+pass@k  B    0.6800  [0.5400, 0.8000]
+diff B - A in pass^k: -0.1000, 95% CI [-0.2600, 0.0600]
+one-sided 95% bounds: lower -0.2200, upper 0.0200; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.3288
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a claude-3-7-sonnet-20250219 --b o4-mini-2025-04-16 --k 1
+A = claude-3-7-sonnet-20250219, B = o4-mini-2025-04-16, k = 1: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5000  [0.3850, 0.6200]
+pass^k  B    0.5900  [0.4700, 0.7000]
+pass@k  A    0.5000  [0.3850, 0.6200]
+pass@k  B    0.5900  [0.4700, 0.7000]
+diff B - A in pass^k: 0.0900, 95% CI [-0.0301, 0.2100]
+one-sided 95% bounds: lower -0.0100, upper 0.1900; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.1819
+verdict: non_inferior
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a claude-3-7-sonnet-20250219 --b o4-mini-2025-04-16 --k 4
+A = claude-3-7-sonnet-20250219, B = o4-mini-2025-04-16, k = 4: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.3600  [0.2200, 0.4800]
+pass^k  B    0.3800  [0.2400, 0.5200]
+pass@k  A    0.6800  [0.5600, 0.8000]
+pass@k  B    0.7600  [0.6400, 0.8800]
+diff B - A in pass^k: 0.0200, 95% CI [-0.1400, 0.1800]
+one-sided 95% bounds: lower -0.1200, upper 0.1600; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 1.0000
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a gpt-4.1-2025-04-14 --b gpt-4.1-mini-2025-04-14 --k 1
+A = gpt-4.1-2025-04-14, B = gpt-4.1-mini-2025-04-14, k = 1: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5600  [0.4400, 0.6700]
+pass^k  B    0.5050  [0.3900, 0.6150]
+pass@k  A    0.5600  [0.4400, 0.6700]
+pass@k  B    0.5050  [0.3900, 0.6150]
+diff B - A in pass^k: -0.0550, 95% CI [-0.1650, 0.0501]
+one-sided 95% bounds: lower -0.1450, upper 0.0400; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.3728
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a gpt-4.1-2025-04-14 --b gpt-4.1-mini-2025-04-14 --k 4
+A = gpt-4.1-2025-04-14, B = gpt-4.1-mini-2025-04-14, k = 4: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.4000  [0.2600, 0.5400]
+pass^k  B    0.2600  [0.1400, 0.3800]
+pass@k  A    0.7800  [0.6600, 0.8800]
+pass@k  B    0.6800  [0.5400, 0.8000]
+diff B - A in pass^k: -0.1400, 95% CI [-0.2800, 0.0000]
+one-sided 95% bounds: lower -0.2600, upper -0.0200; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.1159
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a gpt-4.1-2025-04-14 --b o4-mini-2025-04-16 --k 1
+A = gpt-4.1-2025-04-14, B = o4-mini-2025-04-16, k = 1: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5600  [0.4400, 0.6700]
+pass^k  B    0.5900  [0.4700, 0.7000]
+pass@k  A    0.5600  [0.4400, 0.6700]
+pass@k  B    0.5900  [0.4700, 0.7000]
+diff B - A in pass^k: 0.0300, 95% CI [-0.0651, 0.1300]
+one-sided 95% bounds: lower -0.0550, upper 0.1100; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.6352
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a gpt-4.1-2025-04-14 --b o4-mini-2025-04-16 --k 4
+A = gpt-4.1-2025-04-14, B = o4-mini-2025-04-16, k = 4: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.4000  [0.2600, 0.5400]
+pass^k  B    0.3800  [0.2400, 0.5200]
+pass@k  A    0.7800  [0.6600, 0.8800]
+pass@k  B    0.7600  [0.6400, 0.8800]
+diff B - A in pass^k: -0.0200, 95% CI [-0.1600, 0.1400]
+one-sided 95% bounds: lower -0.1400, upper 0.1000; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 1.0000
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a gpt-4.1-mini-2025-04-14 --b o4-mini-2025-04-16 --k 1
+A = gpt-4.1-mini-2025-04-14, B = o4-mini-2025-04-16, k = 1: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5050  [0.3900, 0.6150]
+pass^k  B    0.5900  [0.4700, 0.7000]
+pass@k  A    0.5050  [0.3900, 0.6150]
+pass@k  B    0.5900  [0.4700, 0.7000]
+diff B - A in pass^k: 0.0850, 95% CI [-0.0251, 0.2050]
+one-sided 95% bounds: lower -0.0100, upper 0.1900; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.1854
+verdict: non_inferior
+
+$ passk compare examples/tau2_baselines/airline.jsonl --a gpt-4.1-mini-2025-04-14 --b o4-mini-2025-04-16 --k 4
+A = gpt-4.1-mini-2025-04-14, B = o4-mini-2025-04-16, k = 4: 50 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.2600  [0.1400, 0.3800]
+pass^k  B    0.3800  [0.2400, 0.5200]
+pass@k  A    0.6800  [0.5400, 0.8000]
+pass@k  B    0.7600  [0.6400, 0.8800]
+diff B - A in pass^k: 0.1200, 95% CI [0.0000, 0.2400]
+one-sided 95% bounds: lower 0.0200, upper 0.2200; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.1139
+verdict: superior
+
+$ passk summarize examples/tau2_baselines/retail.jsonl --run claude-3-7-sonnet-20250219
+run claude-3-7-sonnet-20250219 in examples/tau2_baselines/retail.jsonl: 114 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.7873  [0.7303, 0.8399]  0.7873  [0.7303, 0.8399]
+2  0.8816  [0.8304, 0.9255]  0.6930  [0.6213, 0.7602]
+3  0.9167  [0.8662, 0.9605]  0.6338  [0.5504, 0.7105]
+4  0.9298  [0.8772, 0.9737]  0.5965  [0.5088, 0.6754]
+
+$ passk summarize examples/tau2_baselines/retail.jsonl --run gpt-4.1-2025-04-14
+run gpt-4.1-2025-04-14 in examples/tau2_baselines/retail.jsonl: 114 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.7412  [0.6776, 0.8004]  0.7412  [0.6776, 0.8004]
+2  0.8406  [0.7822, 0.8933]  0.6418  [0.5673, 0.7135]
+3  0.8772  [0.8202, 0.9254]  0.5789  [0.4956, 0.6579]
+4  0.9035  [0.8509, 0.9561]  0.5263  [0.4386, 0.6140]
+
+$ passk summarize examples/tau2_baselines/retail.jsonl --run gpt-4.1-mini-2025-04-14
+run gpt-4.1-mini-2025-04-14 in examples/tau2_baselines/retail.jsonl: 114 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.6601  [0.5965, 0.7215]  0.6601  [0.5965, 0.7215]
+2  0.7909  [0.7266, 0.8524]  0.5292  [0.4576, 0.6009]
+3  0.8355  [0.7697, 0.8969]  0.4430  [0.3640, 0.5219]
+4  0.8509  [0.7807, 0.9123]  0.3860  [0.2982, 0.4737]
+
+$ passk summarize examples/tau2_baselines/retail.jsonl --run o4-mini-2025-04-16
+run o4-mini-2025-04-16 in examples/tau2_baselines/retail.jsonl: 114 tasks, 4 trials per task, 2000 task-level bootstrap replicates, seed 0
+k  pass@k  95% CI            pass^k  95% CI
+1  0.7149  [0.6513, 0.7763]  0.7149  [0.6513, 0.7763]
+2  0.8363  [0.7749, 0.8918]  0.5936  [0.5146, 0.6681]
+3  0.8816  [0.8268, 0.9320]  0.5175  [0.4320, 0.6009]
+4  0.9123  [0.8509, 0.9649]  0.4561  [0.3596, 0.5439]
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-2025-04-14 --k 1
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-2025-04-14, k = 1: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.7873  [0.7303, 0.8399]
+pass^k  B    0.7412  [0.6776, 0.8004]
+pass@k  A    0.7873  [0.7303, 0.8399]
+pass@k  B    0.7412  [0.6776, 0.8004]
+diff B - A in pass^k: -0.0461, 95% CI [-0.1075, 0.0197]
+one-sided 95% bounds: lower -0.0987, upper 0.0066; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.1864
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-2025-04-14 --k 4
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-2025-04-14, k = 4: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5965  [0.5088, 0.6754]
+pass^k  B    0.5263  [0.4386, 0.6140]
+pass@k  A    0.9298  [0.8772, 0.9737]
+pass@k  B    0.9035  [0.8509, 0.9561]
+diff B - A in pass^k: -0.0702, 95% CI [-0.1667, 0.0178]
+one-sided 95% bounds: lower -0.1491, upper 0.0088; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.2169
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-mini-2025-04-14 --k 1
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-mini-2025-04-14, k = 1: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.7873  [0.7303, 0.8399]
+pass^k  B    0.6601  [0.5965, 0.7215]
+pass@k  A    0.7873  [0.7303, 0.8399]
+pass@k  B    0.6601  [0.5965, 0.7215]
+diff B - A in pass^k: -0.1272, 95% CI [-0.1908, -0.0614]
+one-sided 95% bounds: lower -0.1820, upper -0.0702; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.0020
+verdict: inferior
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a claude-3-7-sonnet-20250219 --b gpt-4.1-mini-2025-04-14 --k 4
+A = claude-3-7-sonnet-20250219, B = gpt-4.1-mini-2025-04-14, k = 4: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5965  [0.5088, 0.6754]
+pass^k  B    0.3860  [0.2982, 0.4737]
+pass@k  A    0.9298  [0.8772, 0.9737]
+pass@k  B    0.8509  [0.7807, 0.9123]
+diff B - A in pass^k: -0.2105, 95% CI [-0.3158, -0.1140]
+one-sided 95% bounds: lower -0.2982, upper -0.1228; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.0005
+verdict: inferior
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a claude-3-7-sonnet-20250219 --b o4-mini-2025-04-16 --k 1
+A = claude-3-7-sonnet-20250219, B = o4-mini-2025-04-16, k = 1: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.7873  [0.7303, 0.8399]
+pass^k  B    0.7149  [0.6513, 0.7763]
+pass@k  A    0.7873  [0.7303, 0.8399]
+pass@k  B    0.7149  [0.6513, 0.7763]
+diff B - A in pass^k: -0.0724, 95% CI [-0.1382, -0.0043]
+one-sided 95% bounds: lower -0.1294, upper -0.0132; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.0425
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a claude-3-7-sonnet-20250219 --b o4-mini-2025-04-16 --k 4
+A = claude-3-7-sonnet-20250219, B = o4-mini-2025-04-16, k = 4: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5965  [0.5088, 0.6754]
+pass^k  B    0.4561  [0.3596, 0.5439]
+pass@k  A    0.9298  [0.8772, 0.9737]
+pass@k  B    0.9123  [0.8509, 0.9649]
+diff B - A in pass^k: -0.1404, 95% CI [-0.2456, -0.0349]
+one-sided 95% bounds: lower -0.2281, upper -0.0439; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.0260
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a gpt-4.1-2025-04-14 --b gpt-4.1-mini-2025-04-14 --k 1
+A = gpt-4.1-2025-04-14, B = gpt-4.1-mini-2025-04-14, k = 1: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.7412  [0.6776, 0.8004]
+pass^k  B    0.6601  [0.5965, 0.7215]
+pass@k  A    0.7412  [0.6776, 0.8004]
+pass@k  B    0.6601  [0.5965, 0.7215]
+diff B - A in pass^k: -0.0811, 95% CI [-0.1316, -0.0329]
+one-sided 95% bounds: lower -0.1228, upper -0.0395; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.0055
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a gpt-4.1-2025-04-14 --b gpt-4.1-mini-2025-04-14 --k 4
+A = gpt-4.1-2025-04-14, B = gpt-4.1-mini-2025-04-14, k = 4: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5263  [0.4386, 0.6140]
+pass^k  B    0.3860  [0.2982, 0.4737]
+pass@k  A    0.9035  [0.8509, 0.9561]
+pass@k  B    0.8509  [0.7807, 0.9123]
+diff B - A in pass^k: -0.1404, 95% CI [-0.2368, -0.0439]
+one-sided 95% bounds: lower -0.2193, upper -0.0614; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.0130
+verdict: inferior
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a gpt-4.1-2025-04-14 --b o4-mini-2025-04-16 --k 1
+A = gpt-4.1-2025-04-14, B = o4-mini-2025-04-16, k = 1: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.7412  [0.6776, 0.8004]
+pass^k  B    0.7149  [0.6513, 0.7763]
+pass@k  A    0.7412  [0.6776, 0.8004]
+pass@k  B    0.7149  [0.6513, 0.7763]
+diff B - A in pass^k: -0.0263, 95% CI [-0.0965, 0.0461]
+one-sided 95% bounds: lower -0.0833, upper 0.0351; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.5307
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a gpt-4.1-2025-04-14 --b o4-mini-2025-04-16 --k 4
+A = gpt-4.1-2025-04-14, B = o4-mini-2025-04-16, k = 4: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.5263  [0.4386, 0.6140]
+pass^k  B    0.4561  [0.3596, 0.5439]
+pass@k  A    0.9035  [0.8509, 0.9561]
+pass@k  B    0.9123  [0.8509, 0.9649]
+diff B - A in pass^k: -0.0702, 95% CI [-0.1842, 0.0351]
+one-sided 95% bounds: lower -0.1579, upper 0.0175; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.2674
+verdict: inconclusive
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a gpt-4.1-mini-2025-04-14 --b o4-mini-2025-04-16 --k 1
+A = gpt-4.1-mini-2025-04-14, B = o4-mini-2025-04-16, k = 1: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.6601  [0.5965, 0.7215]
+pass^k  B    0.7149  [0.6513, 0.7763]
+pass@k  A    0.6601  [0.5965, 0.7215]
+pass@k  B    0.7149  [0.6513, 0.7763]
+diff B - A in pass^k: 0.0548, 95% CI [-0.0066, 0.1228]
+one-sided 95% bounds: lower 0.0022, upper 0.1118; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.1359
+verdict: superior
+
+$ passk compare examples/tau2_baselines/retail.jsonl --a gpt-4.1-mini-2025-04-14 --b o4-mini-2025-04-16 --k 4
+A = gpt-4.1-mini-2025-04-14, B = o4-mini-2025-04-16, k = 4: 114 shared tasks, 2000 task-level bootstrap replicates, seed 0
+metric  run  point   95% CI
+pass^k  A    0.3860  [0.2982, 0.4737]
+pass^k  B    0.4561  [0.3596, 0.5439]
+pass@k  A    0.8509  [0.7807, 0.9123]
+pass@k  B    0.9123  [0.8509, 0.9649]
+diff B - A in pass^k: 0.0702, 95% CI [-0.0351, 0.1754]
+one-sided 95% bounds: lower -0.0175, upper 0.1579; margin 0.05
+paired permutation p (pass^k, 2000 sign flips): 0.2819
+verdict: non_inferior

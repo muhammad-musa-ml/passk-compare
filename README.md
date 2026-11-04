@@ -129,6 +129,10 @@ verdict: inconclusive
 
 B's pass^2 estimate is 0.4000 against 0.3333 for A, yet the interval for the difference runs from -0.0889 to 0.2444 and the verdict is inconclusive. This is the case the tool exists for: a higher number that, on 15 tasks and 3 trials, cannot be told apart from no change or from a loss.
 
+## A run on published benchmark data
+
+`examples/tau2_baselines/` runs passk-compare on the June 2025 baseline results that ship with [tau2-bench](https://github.com/sierra-research/tau2-bench): four models on its 50 airline tasks and 114 retail tasks, four trials per task, and 24 paired comparisons at k = 1 and k = 4. On the airline tasks no 95% interval for the difference between two models excludes zero at either k. On the retail tasks three of the six pairs are separated from zero at each k. The folder's [README](examples/tau2_baselines/README.md) has the commands, the tau2-bench commit, the tables, how the numbers sit next to tau2-bench issue 540 on run-to-run noise, and the limits. The task sets in those files are the historical June 2025 ones, which differ from the current base tasks.
+
 ## Limits
 
 - The intervals are plain percentile bootstrap intervals, with no BCa correction for bias or skew. The two-level variant behind `--inner-resample` is biased in the way shown above, and I keep it only for comparison.
